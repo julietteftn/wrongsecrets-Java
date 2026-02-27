@@ -24,7 +24,7 @@ jobs:
         with:
           python-version: "3.11"
       - name: Format python code with black
-        uses: psf/black@stable
+        uses: psf/black@6305bf1ae645ab7541be4f5028a86239316178eb # stable
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -41,11 +41,11 @@ jobs:
           path: ~/.tflint.d/plugins
           key: ${{ matrix.os }}-tflint-${{ hashFiles('.tflint.hcl') }}
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+        uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3.1.2
         with:
           terraform_version: 1.9.8
       - name: Setup TFLint
-        uses: terraform-linters/setup-tflint@v4
+        uses: terraform-linters/setup-tflint@90f302c255ef959cbfb4bd10581afecdb7ece3e6 # v4.1.1
         with:
           tflint_version: ${{env.TFLINT_VERSION}}
       - name: Setup Terraform docs
@@ -59,7 +59,7 @@ jobs:
           wget https://github.com/aquasecurity/trivy/releases/download/v${{env.TRIVY_VERSION}}/trivy_${{env.TRIVY_VERSION}}_Linux-64bit.deb
           sudo dpkg -i trivy_${{env.TRIVY_VERSION}}_Linux-64bit.deb
       - name: Pre-commit checks
-        uses: pre-commit/action@v3.0.1
+        uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd # v3.0.1
       - name: pre-commit-ci-lite
-        uses: pre-commit-ci/lite-action@v1.1.0
+        uses: pre-commit-ci/lite-action@5d6cc0eb514c891a40562a58a8e71576c5c7fb43 # v1.1.0
         if: always()
